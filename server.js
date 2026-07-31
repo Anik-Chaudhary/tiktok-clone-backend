@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 const connection_url = process.env.MONGODB_URI;
 
 mongoose
-  .connect(connectionUrl)
+  .connect(connectionurl)
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.error("MongoDB connection failed:", error.message));
 
