@@ -1,0 +1,17 @@
+{
+  "name": "tiktok-backend",
+  "version": "1.0.0",
+  "description": "Tiktok Backend",
+  "license": "MIT",
+  "author": "Anik Chaudhary",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.8.1"
+  }
+}
