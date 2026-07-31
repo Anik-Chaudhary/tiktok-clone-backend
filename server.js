@@ -14,14 +14,18 @@ const port = 9000;
 // middlewares
 app.use(express.json());
 app.use((req, res, next) => {
-  (res.setHeaders("Access-Control-Allow-Origin", "*"),
-    res.setHeaders("Access-Control-Allow-Headers", "*"),
-    next());
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  next();
 });
 
 // DB config
-const connection_url =
-  "mongodb+srv://anikchaudhary2002_db_user:7vcbtXwCB7AS3Q4p@cluster0.keylsqx.mongodb.net/";
+const connection_url = process.env.MONGODB_URI;
+
+mongoose
+  .connect(connectionUrl)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => console.error("MongoDB connection failed:", error.message));
 
 async function startServer() {
   try {
@@ -61,4 +65,8 @@ app.post("/v2/posts", async (req, res) => {
   }
 });
 
-startServer();
+export default app;
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(9000, () => console.log("Listening on port 9000"));
+}
